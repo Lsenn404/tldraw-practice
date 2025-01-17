@@ -1,5 +1,16 @@
-import { TLComponents, Tldraw, track, useEditor, useReactor, useValue } from 'tldraw'
+import {
+	TLComponents,
+	Tldraw,
+	TLUiComponents,
+	track,
+	useEditor,
+	useReactor,
+	useValue,
+} from 'tldraw'
 import 'tldraw/tldraw.css'
+import { Button } from '../../components/Button/Button'
+import { CardEventList } from '../../components/CardEventList'
+import { ExpandablePanel } from '../../components/ExpandablePanel'
 
 // [1]
 const InfoPanel = track(() => {
@@ -51,8 +62,45 @@ function AlternativeInfoPanel() {
 	)
 }
 
+function ActionsMenu() {
+	return (
+		<ExpandablePanel>
+			<CardEventList>
+				<Button variant="contained">Click me!</Button>
+			</CardEventList>
+		</ExpandablePanel>
+	)
+}
+
+// export interface TLUiComponents {
+// 	ContextMenu?: ComponentType<TLUiContextMenuProps> | null
+// 	ActionsMenu?: ComponentType<TLUiActionsMenuProps> | null
+// 	HelpMenu?: ComponentType<TLUiHelpMenuProps> | null
+// 	ZoomMenu?: ComponentType<TLUiZoomMenuProps> | null
+// 	MainMenu?: ComponentType<TLUiMainMenuProps> | null
+// 	Minimap?: ComponentType | null
+// 	StylePanel?: ComponentType<TLUiStylePanelProps> | null
+// 	PageMenu?: ComponentType | null
+// 	NavigationPanel?: ComponentType | null
+// 	Toolbar?: ComponentType | null
+// 	KeyboardShortcutsDialog?: ComponentType<TLUiKeyboardShortcutsDialogProps> | null
+// 	QuickActions?: ComponentType<TLUiQuickActionsProps> | null
+// 	HelperButtons?: ComponentType<TLUiHelperButtonsProps> | null
+// 	DebugPanel?: ComponentType | null
+// 	DebugMenu?: ComponentType | null
+// 	MenuPanel?: ComponentType | null
+// 	TopPanel?: ComponentType | null
+// 	SharePanel?: ComponentType | null
+// 	CursorChatBubble?: ComponentType | null
+// }
+
+const customUi: TLUiComponents = {
+	CursorChatBubble: ActionsMenu,
+}
+
 const components: TLComponents = {
 	SharePanel: InfoPanel,
+	TopPanel: ActionsMenu,
 }
 
 export default function StateStoreExample() {

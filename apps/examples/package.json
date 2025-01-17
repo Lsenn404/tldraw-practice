@@ -33,6 +33,9 @@
 		"e2e-ui": "playwright test --ui -c ./e2e/playwright.config.ts"
 	},
 	"dependencies": {
+		"@emotion/react": "^11.14.0",
+		"@emotion/styled": "^11.14.0",
+		"@mui/material": "^6.4.0",
 		"@playwright/test": "^1.46.1",
 		"@radix-ui/react-alert-dialog": "^1.0.5",
 		"@tldraw/assets": "workspace:*",
