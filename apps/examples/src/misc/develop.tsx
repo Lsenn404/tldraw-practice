@@ -20,6 +20,11 @@ const ContextMenu = track(() => {
 	const oneShape = editor.getOnlySelectedShape()
 	const selectedShapes = editor.getSelectedShapes()
 	const tracked = trackedShapes.get()
+
+	console.log('selectedShapes: ', selectedShapes)
+
+	console.log('editor: ', editor)
+
 	return (
 		<DefaultContextMenu>
 			<DefaultContextMenuContent />
@@ -53,6 +58,7 @@ function afterChangeHandler(prev: any, next: any) {
 export default function Develop() {
 	const performanceOverrides = usePerformance()
 	const debuggingOverrides = useDebugging()
+
 	return (
 		<div className="tldraw__editor">
 			<Tldraw

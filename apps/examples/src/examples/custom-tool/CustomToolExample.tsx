@@ -1,51 +1,31 @@
-import { StateNode, Tldraw } from 'tldraw'
+import { TLComponents, Tldraw } from 'tldraw'
 import 'tldraw/tldraw.css'
+import { CustomGrid } from '../../CanvasUI/CustomGrid'
+import { CreatureCardUtil } from '../../Shapes/CreatureCard/CreatureCardShape'
+import { CreatureCardTool } from '../../Tools/CreatureCard/CreatureCardTool'
+import { CustomShapeId, CustomToolId } from '../../types'
 
-// There's a guide at the bottom of this file!
+const customTools = [CreatureCardTool]
+const customShapes = [CreatureCardUtil]
 
-const OFFSET = 12
-
-// [1]
-class StickerTool extends StateNode {
-	static override id = 'sticker'
-
-	// [a]
-	override onEnter() {
-		this.editor.setCursor({ type: 'cross', rotation: 0 })
-	}
-
-	// [b]
-	override onPointerDown() {
-		const { currentPagePoint } = this.editor.inputs
-		this.editor.createShape({
-			type: 'text',
-			x: currentPagePoint.x - OFFSET,
-			y: currentPagePoint.y - OFFSET,
-			props: { text: '❤️' },
-		})
-	}
+const components: TLComponents = {
+	Grid: CustomGrid,
 }
 
-// [2]
-const customTools = [StickerTool]
 export default function CustomToolExample() {
 	return (
 		<div className="tldraw__editor">
 			<Tldraw
-				// Pass in the array of custom tool classes
+				components={components}
+				shapeUtils={customShapes}
 				tools={customTools}
-				// Set the initial state to the sticker tool
-				initialState="sticker"
-				// hide the ui
-				hideUi
-				// Put some helpful text on the canvas
+				initialState={CustomToolId.Creature} // Ensure this matches the tool ID
 				onMount={(editor) => {
 					editor.createShape({
-						type: 'text',
-						x: 100,
-						y: 100,
-						props: { text: 'Click anywhere to add a sticker' },
+						type: CustomShapeId.Creature,
 					})
+					editor.updateInstanceState({ isGridMode: true })
+					editor.setCurrentTool(CustomToolId.Creature)
 				}}
 			/>
 		</div>

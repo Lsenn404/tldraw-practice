@@ -11,21 +11,19 @@ export default function BasicExample() {
 							id: 'my-action',
 							label: 'My action',
 							icon: 'circle',
-							// [2]
-							kbd: '$u',
+							kbd: 'u',
 							onSelect(source) {
-								// [3]
 								helpers.addToast({ title: `My action was selected from ${source}!` })
 							},
+							checkbox: true,
 						}
 
-						// [4]
 						const newActions: TLUiActionsContextType = {
 							...actions,
 							'my-action': myCustomAction,
 							delete: {
 								...actions['delete'],
-								kbd: '!x',
+								kbd: 'x',
 							},
 						}
 

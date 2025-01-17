@@ -1,0 +1,1 @@
+export { getPermanentCardTypes } from './getPermanentCardTypes'
